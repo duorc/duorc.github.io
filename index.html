@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DuoRC</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#home">
+                            <span class="glyphicon glyphicon-home"></span> DuoRC</a>
+                    </li>
+                    <li>
+                        <a href="#examples">
+                            <span class="glyphicon glyphicon-th-list"></span> Examples</a>
+                    </li>
+                    <li>
+                        <a href="#faq">
+                            <span class="glyphicon glyphicon-question-sign"></span> FAQ</a>
+                    </li>
+                    <li>
+                        <a href="#leaderboard">
+                            <span class="glyphicon glyphicon-fire"></span> Leaderboard</a>
+                    </li>
+                    <li>
+                        <a href="#download">
+                            <span class="glyphicon glyphicon-save"></span> Download</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div id="home" class="starter-template">
+            <h1>DuoRC: A Large-Scale Dataset for Paraphrased Reading Comprehension</h1>
+            <p class="lead"></p>
+        </div>
+        <div class="col-md-6" id="citation">
+            <p>DuoRC contains 186,089 unique question-answer pairs created from a collection of 7680 pairs of movie plots where
+                each pair in the collection reflects two versions of the same movie.</p>
+            <h4>Why another RC dataset?</h4>
+            <p>DuoRC pushes the NLP community to address challenges on incorporating knowledge and reasoning in neural architectures
+                for reading comprehension. It poses several interesting challenges such as:</p>
+            <ul>
+                <li>DuoRC using parallel plots is especially designed to contain a large number of questions with
+                    <b>low lexical overlap
+                    </b> between questions and their corresponding passages</li>
+                <li>It requires models to go beyond the content of the given passage itself and incorporate world-knowledge,
+                    background knowledge, and common-sense knowledge to arrive at the answer</li>
+                <li>It revolves around narrative passages from movie plots describing complex events and therefore naturally
+                    require complex reasoning (e.g. temporal reasoning, entailment, long-distance anaphoras, etc.) across
+                    multiple sentences to infer the answer to questions</li>
+                <li>Several of the questions in DuoRC, while seeming relevant, cannot actually be answered from the given passage.
+                    This requires the model to detect the
+                    <b>unanswerability</b> of questions. This aspect is important for machines to achieve in industrial settings
+                    in particular</li>
+            </ul>
+        </div>
+        <div class="col-md-6" id="citation">
+            <h4>Question Statistics</h4>
+            <table class="table table-condensed">
+                <tbody>
+                    <tr>
+                        <td>What</td>
+                        <td>36.92%</td>
+                        <td>Who</td>
+                        <td>41.22%</td>
+                    </tr>
+                    <tr>
+                        <td>Why</td>
+                        <td>2.48%</td>
+                        <td>When</td>
+                        <td>2.86%</td>
+                    </tr>
+                    <tr>
+                        <td>How</td>
+                        <td>6.32%</td>
+                        <td>Reason</td>
+                        <td>1.23%</td>
+                    </tr>
+                    <tr>
+                        <td>Boolean</td>
+                        <td>0.81%</td>
+                        <td>Which</td>
+                        <td>1.93%</td>
+                    </tr>
+                    <tr>
+                        <td>Where</td>
+                        <td>9.18%</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Please cite our work as follows</p>
+            <div class="well" style="font-family: monospace;">
+                @inproceedings{DuoRC,
+                <br /> author = {
+                <a href="https://researcher.watson.ibm.com/researcher/view.php?person=in-amrsaha4" target="_blank">Amrita Saha</a> and
+                <a href="https://researcher.watson.ibm.com/researcher/view.php?person=in-rahul.a.r" target="_blank">Rahul Aralikatte</a> and
+                <a href="https://www.cse.iitm.ac.in/~miteshk/" target="_blank">Mitesh M. Khapra</a> and
+                <a href="https://researcher.watson.ibm.com/researcher/view.php?person=in-kartsank" target="_blank">Karthik Sankaranarayanan</a>},
+                <br /> title = {{DuoRC: Towards Complex Language Understanding with Paraphrased Reading Comprehension}},
+                <br /> booktitle = {Meeting of the Association for Computational Linguistics (ACL)},
+                <br /> year = {2018}
+                <br /> }
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-12" id="examples">
+            <h2>Examples</h2>
+            <h3>Example 1: Pale Rider (1985)</h3>
+            <div class="col-md-6 scroll-plot" id="ex1-smaller-plot">
+                <h4>Shorter Plot</h4>
+                <p>In the countryside outside the fictional town of Lahood, California, sometime around 1880, [[
+                    <span style="color:blue">thugs working for big-time miner Coy LaHood ride in and destroy the camp of a group of struggling miners</span>]
+                    <sup>Q1</sup>
+                    <span style="color:cyan"> and their families who have settled in nearby Carbon Canyon and are panning for gold there. In leaving,
+                        they also shoot the little dog of fourteen-year-old Megan Wheeler</span>]
+                    <sup>Q15</sup>. As Megan buries her dog in the woods and prays for a miracle, a stranger passes by heading
+                    to the town on horseback.</p>
+
+                <p>[
+                    <span style="color:blue">Megan’s mother, Sarah</span>]
+                    <sup>Q16</sup>, is being courted by [
+                    <span style="color:blue">Hull Barret, the leader of the miners</span>]
+                    <sup>Q17</sup> . . . [
+                    <span style="color:blue">Coy LaHood’s son Josh</span>]
+                    <sup>Q8</sup> . . . [
+                    <span style="color:blue">Club, who with one hammer blow smashes a large rock</span>]
+                    <sup>Q7</sup> . . . [
+                    <span style="color:blue">Coy LaHood has been away in Sacramento</span>]
+                    <sup>Q9</sup> . . . [[
+                    <span style="color:blue">Megan, who has grown fond of the Preacher, goes looking for him, but Josh confronts and attempts to rape
+                        her
+                    </span>]
+                    <sup>Q11</sup>,
+                    <span style="color:cyan">while his cohorts look on and encourage him, except for Club, who sees what is happening and moves forward
+                        to help Megan</span>]
+                    <sup>Q13</sup> before Josh can do anything serious. At this moment the [
+                    <span style="color:blue">Preacher arrives on horseback armed with a Remington Model 1858 revolver he has recovered from a Wells
+                        Fargo office and, after shooting Josh</span>]
+                    <sup>Q14</sup> . . . [
+                    <span style="color:blue">Stockburn, who appears startled and says that he sounds like someone that he once knew, but that couldn’t
+                        be, since that man is dead</span>]
+                    <sup>Q5</sup>. [
+                    <span style="color:blue">Stockburn and his men gun down Spider Conway</span>]
+                    <sup>Q4</sup>, . . . </p>
+
+                <p>[
+                    <span style="color:blue">The Preacher and Hull go to LaHood’s strip mining site and blow it up with dynamite</span>]
+                    <sup>Q6</sup>. [
+                    <span style="color:blue">To stop Hull from following him, the Preacher then scares off Hull’s horse</span>]
+                    <sup>Q3</sup> and rides into town alone. . . [
+                    <span style="color:blue">Coy LaHood, watching from his office</span>]
+                    <sup>Q10</sup>, . . . [
+                    <span style="color:blue">snow-covered mountains</span>]
+                    <sup>Q2</sup>. [
+                    <span style="color:blue">Megan then drives into town and shouts her love to the Preacher</span>]
+                    <sup>Q12</sup> and thanks after him. The words echo along the ravine that he is traversing.</p>
+            </div>
+            <div class="col-md-6 scroll-plot" id="ex1-bigger-plot">
+                <h4>Larger Plot</h4>
+                <p>Somewhere in California, at the end of the Gold Rush, several horsemen come riding down from the nearby mountains
+                    . . . [
+                    <span style="color:red">The horsemen shoot cattle and Megan’s dog</span>]
+                    <sup>Q4,Q15</sup>, and then chase donkeys as they leave . . . </p>
+
+                <p>Hull describes the fight between the stranger and McGill and his men. [
+                    <span style="color:red">Megan’s mother, Sarah</span>]
+                    <sup>Q16</sup> says he sounds no different from McGill, Tyson, or any of LaHood’s roughnecks . . . Preacher
+                    says there is lot of sinners around, that he can’t leave before he finishes his work. [
+                    <span style="color:orange">Josh says, ”Club”, who gets down and walks into the stream. Everyone is apprehensive. He rolls down his
+                        sleeves, and then. . . quickly grabs Hull’s sledgehammer with one hand and strikes the boulder once,
+                        screaming, splitting it</span>]
+                    <sup>Q7</sup> . . . </p>
+
+                <p>[
+                    <span style="color:red">A train pulls into the station from Sacramento while Josh and McGill wait.</span> [
+                    <span style="color:red">Josh’s father Coy LaHood</span>]]
+                    <sup>Q8,Q9</sup> (Richard Dysart) exits the train, and then he goes with Josh and McGill. . . </p>
+
+                <p>Josh asks what she really came for. She replies that she’s just riding, taking a look around. [
+                    <span style="color:orange">Josh says he wants to take a look too, at her real close. He pulls her off the horse. She screams as
+                        he carries her downhill. . . Josh grabs her hair and kisses her. They both fall to the ground. The
+                        men cheer him on while Megan begs him to stop</span>]
+                    <sup>Q11</sup> . . . a gunshot sounds out. Josh gets up and everyone turns around. [
+                    <span style="color:orange">Preacher, on his horse . . . His gun is trained on Josh. Megan sees him and smiles</span>]
+                    <sup>Q13</sup>, . . . [
+                    <span style="color:red">Josh falls to the ground. He reaches for his gun, but Preacher shoots his hand</span>]
+                    <sup>Q14</sup> . . . LaHood replies, ”Tall. Lean. His eyes. . . his eyes. Something strange about em. That
+                    mean something to you?” [
+                    <span style="color:red">Stockburn says that it sounds like a man he knew, but that man is dead</span>]
+                    <sup>Q5</sup> . . . [
+                    <span style="color:red">LaHood watches through the window</span>]
+                    <sup>Q10</sup> as they kill Spider, . . . </p>
+
+                <p>Hull insists on going with him so Preacher agrees. [
+                    <span style="color:red">They go to the LaHood camp and blow up their pipes, sluices, tents, and the barracks with dynamite</span>]
+                    <sup>Q6</sup>. [
+                    <span style="color:red">After fooling Hull to dismount, Preacher scares away his horse. He then tells Hull to take care of Sarah
+                        and Megan, and rides into town</span>]
+                    <sup>Q3</sup> . . . Blankenship tells her that the horses are exhausted and she would kill them. [
+                    <span style="color:red">Megan runs to the end of town and shouts out thank you to Preacher, that they love him, that she loves
+                        him
+                    </span>]
+                    <sup>Q12</sup> . . . The final shot of the movie shows Preacher riding through the [
+                    <span style="color:red">snow in the mountains</span>]
+                    <sup>Q2</sup>.</p>
+            </div>
+            <div>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Shorter Plot Answer</th>
+                            <th>Larger Plot Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>For which big-time miner are the thugs who destroyed miners camp in Carbon Canyon working for?</td>
+                            <td>Coy Lahood</td>
+                            <td>Coy Lahood</td>
+                        </tr>
+                        <tr>
+                            <td>How are the mountains in the film?</td>
+                            <td>Covered with snow</td>
+                            <td>Snow-capped</td>
+                        </tr>
+                        <tr>
+                            <td>How does the Preacher stop Hull from following him?</td>
+                            <td>Scares Hulls' horse</td>
+                            <td>To stop Hull from following him, the Preacher then scares off Hull's horse and rides into town
+                                alone
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>In the movie, who do Stockburn and his men gun down?</td>
+                            <td>Spider Conway</td>
+                            <td>Megan's dog and cattle</td>
+                        </tr>
+                        <tr>
+                            <td>In the movie, why does Stockburn say that the Preacher could not be the man he once knew?</td>
+                            <td>That man is dead</td>
+                            <td>The man Stockburn once knew is dead</td>
+                        </tr>
+                        <tr>
+                            <td>What did they use to blow up the strip mining site?</td>
+                            <td>Dynamite</td>
+                            <td>Dynamite</td>
+                        </tr>
+                        <tr>
+                            <td>What does Club smash?</td>
+                            <td>A rock</td>
+                            <td>A Boulder</td>
+                        </tr>
+                        <tr>
+                            <td>What is Coy Lahood's relation to Josh?</td>
+                            <td>Father and son</td>
+                            <td>Father</td>
+                        </tr>
+                        <tr>
+                            <td>Where has Coy Lahood been living?</td>
+                            <td>Sacramento</td>
+                            <td>Sacramento</td>
+                        </tr>
+                        <tr>
+                            <td>Where was Coy watching from?</td>
+                            <td>Office</td>
+                            <td>A window</td>
+                        </tr>
+                        <tr>
+                            <td>Who attempts to rape Megan?</td>
+                            <td>Josh</td>
+                            <td>Josh</td>
+                        </tr>
+                        <tr>
+                            <td>Who does megan love?</td>
+                            <td>The preacher</td>
+                            <td>The preacher</td>
+                        </tr>
+                        <tr>
+                            <td>Who prevents Josh from raping Megan?</td>
+                            <td>Club</td>
+                            <td>The preacher</td>
+                        </tr>
+                        <tr>
+                            <td>Who shoots Josh in the hand?</td>
+                            <td>Preacher</td>
+                            <td>The preacher</td>
+                        </tr>
+                        <tr>
+                            <td>Whose little dog did the thugs shoot?</td>
+                            <td>Megan Wheeler</td>
+                            <td>Megan</td>
+                        </tr>
+                        <tr>
+                            <td>Who is Megan's mother?</td>
+                            <td>Sarah</td>
+                            <td>Sarah</td>
+                        </tr>
+                        <tr>
+                            <td>Who is the leader of the miners?</td>
+                            <td>Hull Barret</td>
+                            <td>Coy LaHood</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Example 2: Big Jake (1971)</h3>
+            <div class="col-md-6 scroll-plot" id="ex2-smaller-plot">
+                <h4>Shorter Plot</h4>
+                <p>[
+                    <span style="color:blue">In 1909</span>]
+                    <sup>Q6</sup>, [
+                    <span style="color:cyan">there is a raid on the McCandles family . . . Martha, the head of the family . . . [In consequence, she
+                        sends for her estranged husband, the aging Jacob ”Big Jake” McCandles</span>]
+                    <sup>Q9</sup>, . . . [
+                    <span style="color:blue">the ransom to the kidnappers, a million dollars</span>]
+                    <sup>Q4</sup> . . . </p>
+
+                <p>[
+                    <span style="color:blue">The Texas Ranger captain is present and offers the services of his men</span>]
+                    <sup>Q11</sup>, . . . Jake, preferring the old ways, has followed on horseback, accompanied by an old Apache
+                    associate, Sam Sharpnose. [
+                    <span style="color:blue">He is now joined by his sons, Michael and James</span>]
+                    <sup>Q2</sup>, . . . Knowing that they have been followed by another gang intent on stealing the strongbox,
+                    [
+                    <span style="color:blue">Jake sets a trap for them and they are all killed</span>]
+                    <sup>Q16</sup>. [
+                    <span style="color:blue">During the attack, the chest is blasted open</span>]
+                    <sup>Q1</sup>, [
+                    <span style="color:blue">revealing clipped bundles of newspaper instead of money</span>]
+                    <sup>Q5</sup> . . . </p>
+
+                <p>A thunderstorm breaks and [
+                    <span style="color:blue">Pop Dawson, one of the outlaws, arrives to give them the details of the exchange</span>]
+                    <sup>Q7</sup> . . . [
+                    <span style="color:blue">Jake arranges for Michael to follow after them to take care of the sharp</span>] . . . [
+                    <span style="color:blue">Jake tosses the key of the chest to Fain, who opens it up to discover that he has been tricked</span>]
+                    <sup>Q12</sup>. [
+                    <span style="color:blue">Fain orders his brother Will to kill the boy</span]<sup>Q13</sup> but he is shot by Jake. [
+                        <span style="color:blue">Dog is wounded by the sniper</span>]
+                        <sup>Q15</sup> and Jake is wounded in the leg before Michael kills him. Jake tells the boy to escape but
+                        Little Jake is hunted by the machete wielding [
+                        <span style="color:blue">John Goodfellow, who has already hacked Sam to death</span>]
+                        <sup>Q10</sup> . . . [
+                        <span style="color:blue">With Little Jake rescued, and the broken family bonded, they prepare to head home</span>]
+                        <sup>Q3</sup>.</p>
+            </div>
+            <div class="col-md-6 scroll-plot" id="ex2-larger-plot">
+                <h4>Larger Plot</h4>
+                <p>[[
+                    <span style="color:orange">Jacob McCandles (John Wayne) is a big man with a bigger reputation. A successful rancher and landowner</span>]
+                    <sup>Q14</sup>,
+                    <span style="color:red">his many businesses keep him conveniently away from his home and estranged wife Martha (Maureen O’Hara)</span>]
+                    <sup>Q9</sup>. . . , [
+                    <span style="color:red">and is demanding one million dollars for his safe return</span>]
+                    <sup>Q4</sup>. . . </p>
+
+                <p>[
+                    <span style="color:orange">The local sheriff has convened a posse complete with then state-of-the-art automobiles.</span> [
+                    <span style="color:red">Two of Jake’s sons, the passionate, gunslinging James (Patrick Wayne) and the motorcycle-riding, sharpshooting
+                        Michael (Christopher Mitchum)</span>]
+                    <sup>Q2</sup>
+                    <span style="color:orange">elect to go with the sheriff’s posse. Big Jake decides to set off across the rough terrain on his horse
+                        with his Dog at his side, and soon meets up with his Native American friend, Sam Sharpnose (Bruce
+                        Cabot), who has brought additional horses and supplies</span>]
+                    <sup>Q11</sup>. </p>
+
+                <p>[
+                    <span style="color:orange">They then devise their strategy: James will go have a good time in the saloon, Big Jake will head to
+                        the barbershop for a shower, Sam will secrete himself on the roof of the hotel, seemingly leaving
+                        Michael alone protecting the strong box. Big Jake tells Sam to listen for a ”disturbance” in the
+                        street, and use the distraction to join Michael in the hotel room to protect the strong box. As Big
+                        Jake predicted, the gang tries to hit the strong box when it looks most vulnerable. Fain and another
+                        of his gang members start a fight with James in the saloon, one keeps a gun on Big Jake in the barbershop,
+                        and two others come up the hotel stairs and toward the room. Big Jake dispatches his captor in the
+                        barbershop, James fights his way out of the saloon with Jake’s help, and the two head to the hotel.
+                        At the hotel, once Sam hears the fight in the saloon, he climbs over the roof and slips in the window
+                        to aid Michael in protecting the strong box. Shotguns blast as the gang hits the hotel room. When
+                        James and Jake arrive they find Sam, Michael and the Dog unharmed,</span> [
+                    <span style="color:red">but the strong box has suffered damage. To their horror, James and Michael realize they’ve been risking
+                        their lives to protect a box of newspaper clippings!</span>]]
+                    <sup>Q1,Q5,Q16</sup> . . . </p>
+
+                <p>[
+                    <span style="color:red">Big Jake takes the few moments he has to plan with his sons. He tells Michael of the sharpshooter and
+                        instructs him to find a high position and take him out whenever he can. Big Jake takes the Dog and
+                        goes to the meet as instructed, while the others follow discreetly behind</span>]
+                    <sup>Q8</sup> . . . [
+                    <span style="color:red">As Fain unlocks the strong box, he realizes he´s been had</span>]
+                    <sup>Q12</sup>. Big Jake whispers to him that no matter what happens, Fain will be the first one to die. [Fain
+                    screams his command to kill the boy]
+                    <sup>Q13</sup>, . . . </p>
+
+                <p>[
+                    <span style="color:red">Dog giving his life protecting Little Jake from one of Fain’s machete-wielding gang</span>]
+                    <sup>Q15</sup>. . . Sam points him toward James at the exit, [
+                    <span style="color:red">who helps Little Jake escape. Fain and Big Jake are in a duel to the death, when Michael takes a fatal
+                        shot at Fain, saving his father and Little Jake. After a harrowing journey and a risky gamble, the
+                        family leaves, happy to be together</span>]
+                    <sup>Q3</sup>.</p>
+            </div>
+            <div>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Shorter Plot Answer</th>
+                            <th>Larger Plot Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>How was the strongbox opened?</td>
+                            <td>It was blasted during an attack</td>
+                            <td>It was damaged during the fight</td>
+                        </tr>
+                        <tr>
+                            <td>What are the names of Jake's sons?</td>
+                            <td>Jake's sons are Michael and James</td>
+                            <td>James and Michael</td>
+                        </tr>
+                        <tr>
+                            <td>What did the family prepare to do once Jake had been rescued?</td>
+                            <td>Head home</td>
+                            <td>Leave</td>
+                        </tr>
+                        <tr>
+                            <td>What is the amount of the ransom?</td>
+                            <td>The ransom amount is a million dollars</td>
+                            <td>One million dollars</td>
+                        </tr>
+                        <tr>
+                            <td>What was in the strongbox?</td>
+                            <td>Clipped bundles of newspaper</td>
+                            <td>Newspaper clippings</td>
+                        </tr>
+                        <tr>
+                            <td>What year does the movie take place?</td>
+                            <td>1909</td>
+                            <td>No Answer</td>
+                        </tr>
+                        <tr>
+                            <td>Which outlaw gives details of theexchange to the others?</td>
+                            <td>Pop Dawson</td>
+                            <td>No Answer</td>
+                        </tr>
+                        <tr>
+                            <td>Who does Jake arrange to follow the restof the group?</td>
+                            <td>Michael</td>
+                            <td>Michael</td>
+                        </tr>
+                        <tr>
+                            <td>Who is married to Big Jake?</td>
+                            <td>Martha</td>
+                            <td>Martha</td>
+                        </tr>
+                        <tr>
+                            <td>Who killed Sam?</td>
+                            <td>John Goodfellow</td>
+                            <td>No Answer</td>
+                        </tr>
+                        <tr>
+                            <td>Who offers his services to help Jakecombat the kidnappers?</td>
+                            <td>The Texas ranger captain offers theservices of men</td>
+                            <td>The posse, native American friend and his two sons</td>
+                        </tr>
+                        <tr>
+                            <td>Who opens the chest to discover he hasbeen tricked?</td>
+                            <td>Fain</td>
+                            <td>Fain</td>
+                        </tr>
+                        <tr>
+                            <td>Who orders Will to kill the boy?</td>
+                            <td>Fain</td>
+                            <td>Fain</td>
+                        </tr>
+                        <tr>
+                            <td>Who owns the ranch?</td>
+                            <td>McCandles family</td>
+                            <td>McCandles family</td>
+                        </tr>
+                        <tr>
+                            <td>Who wounded the dog?</td>
+                            <td>A sniper</td>
+                            <td>Fain's machete-wielding gang</td>
+                        </tr>
+                        <tr>
+                            <td>Why does Jake set a trap and kill anothergang?</td>
+                            <td>They were intent on stealing the strongbox</td>
+                            <td>To protect the strongbox</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-12" id="faq">
+            <h2>FAQ</h2>
+            <h4>Coming soon!</h4>
+            <p>This section will answer questions like:</p>
+            <ul>
+                <li>How do I submit my model?</li>
+                <li>How do I replicate your results?</li>
+            </ul>
+        </div>
+        <hr />
+        <div class="col-md-12" id="leaderboard">
+            <h2>Leaderboard</h2>
+            <div class="col-md-12" id="selfrc-leaderboard">
+                <h4 class="text-center">
+                    <span class="glyphicon glyphicon-fire"></span> Self RC Leaderboard</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Team Name</th>
+                            <th>Affiliation</th>
+                            <th>Accuracy</th>
+                            <th>F1</th>
+                            <th>Model Details</th>
+                            <th>Paper</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apr 24, 2018</td>
+                            <td>DuoRC Authors</td>
+                            <td>IBM Research + IIT Madras</td>
+                            <td>37.53</td>
+                            <td>50.56</td>
+                            <td>Preprocessing + span identification with
+                                <a href="https://allenai.github.io/bi-att-flow/" target="_blank">BiDAF</a>
+                            </td>
+                            <td>
+                                <a href="https://arxiv.org/abs/1804.07927" target="_blank">Link</a>
+                            </td>
+                            <td>Coming soon!</td>
+                        </tr>
+                        <tr>
+                            <td>Apr 24, 2018</td>
+                            <td>DuoRC Authors</td>
+                            <td>IBM Research + IIT Madras</td>
+                            <td>15.31</td>
+                            <td>24.05</td>
+                            <td>Preprocessing + Data augmentation + Span identification with
+                                <a href="https://allenai.github.io/bi-att-flow/" target="_blank">BiDAF</a> + Query-based abstractive summarizer
+                            </td>
+                            <td>
+                                <a href="https://arxiv.org/abs/1804.07927" target="_blank">Link</a>
+                            </td>
+                            <td>Coming soon!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr />
+            <div class="col-md-12" id="paraphraserc-leaderboard">
+                <h4 class="text-center">
+                    <span class="glyphicon glyphicon-fire"></span> Paraphrase RC Leaderboard</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Team Name</th>
+                            <th>Affiliation</th>
+                            <th>Accuracy</th>
+                            <th>F1</th>
+                            <th>Model Details</th>
+                            <th>Paper</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apr 24, 2018</td>
+                            <td>DuoRC Authors</td>
+                            <td>IBM Research + IIT Madras</td>
+                            <td>14.92</td>
+                            <td>21.53</td>
+                            <td>Preprocessing + span identification with
+                                <a href="https://allenai.github.io/bi-att-flow/" target="_blank">BiDAF</a>
+                            </td>
+                            <td>
+                                <a href="https://arxiv.org/abs/1804.07927" target="_blank">Link</a>
+                            </td>
+                            <td>Coming soon!</td>
+                        </tr>
+                        <tr>
+                            <td>Apr 24, 2018</td>
+                            <td>DuoRC Authors</td>
+                            <td>IBM Research + IIT Madras</td>
+                            <td>5.42</td>
+                            <td>9.64</td>
+                            <td>Preprocessing + Data augmentation + Span identification with
+                                <a href="https://allenai.github.io/bi-att-flow/" target="_blank">BiDAF</a> + Query-based abstractive summarizer
+                            </td>
+                            <td>
+                                <a href="https://arxiv.org/abs/1804.07927" target="_blank">Link</a>
+                            </td>
+                            <td>Coming soon!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-12" id="download">
+            <h2>Download</h2>
+            <p>You can find the train and development sets
+                <a href="https://github.com/rahular/duorc/tree/master/dataset" target="_blank">here</a>
+            </p>
+        </div>
+        <hr />
+    </div>
+    <!-- /.container -->
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-center">Made with
+                <span class="glyphicon glyphicon-heart"></span> using
+                <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+</body>
+
+</html>
