@@ -522,12 +522,18 @@
         <hr />
         <div class="col-md-12" id="faq">
             <h2>FAQ</h2>
-            <h4>Coming soon!</h4>
-            <p>This section will answer questions like:</p>
-            <ul>
-                <li>How do I submit my model?</li>
-                <li>How do I replicate your results?</li>
-            </ul>
+            <h4>How do I make a submission?</h4>
+            <p>The submission zip should contain 2 JSON files. One containing the answers for Self RC test set and the other for Paraphrase RC test set. The format of the files should be as follows:</p>
+            <div class="well" style="font-family: monospace;">
+                {<br />&nbsp;&nbsp;
+                    "movie-id-1": {<br />&nbsp;&nbsp;&nbsp;&nbsp;
+                        "question-id-1": ["answer-1", "answer-2", ... ],<br />&nbsp;&nbsp;&nbsp;&nbsp;
+                        "question-id-2": ["answer-1", "answer-2", ... ],<br />&nbsp;&nbsp;&nbsp;&nbsp;
+                        ...<br />&nbsp;&nbsp;
+                    },<br />&nbsp;&nbsp;
+                    ...<br />
+                }
+            </div>
         </div>
         <hr />
         <div class="col-md-12" id="leaderboard">
@@ -633,7 +639,7 @@
         <hr />
         <div class="col-md-12" id="download">
             <h2>Download</h2>
-            <p>You can find the train and development sets
+            <p>You can find the train, development and test sets
                 <a href="https://github.com/duorc/duorc/tree/master/dataset" target="_blank">here</a>
             </p>
         </div>
